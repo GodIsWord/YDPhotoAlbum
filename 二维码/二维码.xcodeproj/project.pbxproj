@@ -14,6 +14,16 @@
 		E695F166212D643800519A99 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E695F164212D643800519A99 /* LaunchScreen.storyboard */; };
 		E695F169212D643800519A99 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E695F168212D643800519A99 /* main.m */; };
 		E695F171212D6C4E00519A99 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E695F170212D6C4E00519A99 /* AVFoundation.framework */; };
+		E6E2C85C21732052008ABC42 /* YDScanerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E2C85B21732052008ABC42 /* YDScanerViewController.m */; };
+		E6E2C85F217320CB008ABC42 /* YDScanerNaviViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E2C85E217320CB008ABC42 /* YDScanerNaviViewController.m */; };
+		E6E2C861217322CD008ABC42 /* ydhoto_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E2C860217322CD008ABC42 /* ydhoto_back@2x.png */; };
+		E6E2C86B217323C5008ABC42 /* ArtaWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E2C864217323C5008ABC42 /* ArtaWebViewController.m */; };
+		E6E2C86C217323C5008ABC42 /* IMY_NJKWebViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E2C866217323C5008ABC42 /* IMY_NJKWebViewProgress.m */; };
+		E6E2C86D217323C5008ABC42 /* IMYWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E2C868217323C5008ABC42 /* IMYWebView.m */; };
+		E6E2C86E217323C5008ABC42 /* WYWeakScriptMessageDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E2C86A217323C5008ABC42 /* WYWeakScriptMessageDelegate.m */; };
+		E6E2C87121732500008ABC42 /* UIColor+ARCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E2C86F21732500008ABC42 /* UIColor+ARCatalog.m */; };
+		E6E2C87521732A19008ABC42 /* XBWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E2C87321732A19008ABC42 /* XBWeakProxy.m */; };
+		E6E2C87921732BA3008ABC42 /* UIView+XBFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E2C87821732BA3008ABC42 /* UIView+XBFrame.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +38,26 @@
 		E695F167212D643800519A99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E695F168212D643800519A99 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E695F170212D6C4E00519A99 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		E6E2C85A21732052008ABC42 /* YDScanerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YDScanerViewController.h; sourceTree = "<group>"; };
+		E6E2C85B21732052008ABC42 /* YDScanerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YDScanerViewController.m; sourceTree = "<group>"; };
+		E6E2C85D217320CB008ABC42 /* YDScanerNaviViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YDScanerNaviViewController.h; sourceTree = "<group>"; };
+		E6E2C85E217320CB008ABC42 /* YDScanerNaviViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YDScanerNaviViewController.m; sourceTree = "<group>"; };
+		E6E2C860217322CD008ABC42 /* ydhoto_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ydhoto_back@2x.png"; path = "../../相册/相册/YDPhotoAlbum/YDPhotoImage/ydhoto_back@2x.png"; sourceTree = "<group>"; };
+		E6E2C863217323C5008ABC42 /* ArtaWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArtaWebViewController.h; sourceTree = "<group>"; };
+		E6E2C864217323C5008ABC42 /* ArtaWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtaWebViewController.m; sourceTree = "<group>"; };
+		E6E2C865217323C5008ABC42 /* IMY_NJKWebViewProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMY_NJKWebViewProgress.h; sourceTree = "<group>"; };
+		E6E2C866217323C5008ABC42 /* IMY_NJKWebViewProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMY_NJKWebViewProgress.m; sourceTree = "<group>"; };
+		E6E2C867217323C5008ABC42 /* IMYWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMYWebView.h; sourceTree = "<group>"; };
+		E6E2C868217323C5008ABC42 /* IMYWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMYWebView.m; sourceTree = "<group>"; };
+		E6E2C869217323C5008ABC42 /* WYWeakScriptMessageDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYWeakScriptMessageDelegate.h; sourceTree = "<group>"; };
+		E6E2C86A217323C5008ABC42 /* WYWeakScriptMessageDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYWeakScriptMessageDelegate.m; sourceTree = "<group>"; };
+		E6E2C86F21732500008ABC42 /* UIColor+ARCatalog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ARCatalog.m"; sourceTree = "<group>"; };
+		E6E2C87021732500008ABC42 /* UIColor+ARCatalog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ARCatalog.h"; sourceTree = "<group>"; };
+		E6E2C87221732560008ABC42 /* UtinityDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UtinityDefine.h; sourceTree = "<group>"; };
+		E6E2C87321732A19008ABC42 /* XBWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XBWeakProxy.m; sourceTree = "<group>"; };
+		E6E2C87421732A19008ABC42 /* XBWeakProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XBWeakProxy.h; sourceTree = "<group>"; };
+		E6E2C87721732BA2008ABC42 /* UIView+XBFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+XBFrame.h"; sourceTree = "<group>"; };
+		E6E2C87821732BA3008ABC42 /* UIView+XBFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+XBFrame.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,10 +92,17 @@
 		E695F158212D643600519A99 /* 二维码 */ = {
 			isa = PBXGroup;
 			children = (
+				E6E2C87621732AAC008ABC42 /* viewTools */,
+				E6E2C862217323C5008ABC42 /* WebVIew */,
+				E6E2C860217322CD008ABC42 /* ydhoto_back@2x.png */,
 				E695F159212D643600519A99 /* AppDelegate.h */,
 				E695F15A212D643600519A99 /* AppDelegate.m */,
 				E695F15C212D643600519A99 /* ViewController.h */,
 				E695F15D212D643600519A99 /* ViewController.m */,
+				E6E2C85A21732052008ABC42 /* YDScanerViewController.h */,
+				E6E2C85B21732052008ABC42 /* YDScanerViewController.m */,
+				E6E2C85D217320CB008ABC42 /* YDScanerNaviViewController.h */,
+				E6E2C85E217320CB008ABC42 /* YDScanerNaviViewController.m */,
 				E695F15F212D643600519A99 /* Main.storyboard */,
 				E695F162212D643800519A99 /* Assets.xcassets */,
 				E695F164212D643800519A99 /* LaunchScreen.storyboard */,
@@ -81,6 +118,35 @@
 				E695F170212D6C4E00519A99 /* AVFoundation.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E6E2C862217323C5008ABC42 /* WebVIew */ = {
+			isa = PBXGroup;
+			children = (
+				E6E2C863217323C5008ABC42 /* ArtaWebViewController.h */,
+				E6E2C864217323C5008ABC42 /* ArtaWebViewController.m */,
+				E6E2C865217323C5008ABC42 /* IMY_NJKWebViewProgress.h */,
+				E6E2C866217323C5008ABC42 /* IMY_NJKWebViewProgress.m */,
+				E6E2C867217323C5008ABC42 /* IMYWebView.h */,
+				E6E2C868217323C5008ABC42 /* IMYWebView.m */,
+				E6E2C869217323C5008ABC42 /* WYWeakScriptMessageDelegate.h */,
+				E6E2C86A217323C5008ABC42 /* WYWeakScriptMessageDelegate.m */,
+			);
+			path = WebVIew;
+			sourceTree = "<group>";
+		};
+		E6E2C87621732AAC008ABC42 /* viewTools */ = {
+			isa = PBXGroup;
+			children = (
+				E6E2C87721732BA2008ABC42 /* UIView+XBFrame.h */,
+				E6E2C87821732BA3008ABC42 /* UIView+XBFrame.m */,
+				E6E2C87221732560008ABC42 /* UtinityDefine.h */,
+				E6E2C87021732500008ABC42 /* UIColor+ARCatalog.h */,
+				E6E2C86F21732500008ABC42 /* UIColor+ARCatalog.m */,
+				E6E2C87421732A19008ABC42 /* XBWeakProxy.h */,
+				E6E2C87321732A19008ABC42 /* XBWeakProxy.m */,
+			);
+			path = viewTools;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,6 +208,7 @@
 			files = (
 				E695F166212D643800519A99 /* LaunchScreen.storyboard in Resources */,
 				E695F163212D643800519A99 /* Assets.xcassets in Resources */,
+				E6E2C861217322CD008ABC42 /* ydhoto_back@2x.png in Resources */,
 				E695F161212D643600519A99 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -154,8 +221,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				E695F15E212D643600519A99 /* ViewController.m in Sources */,
+				E6E2C86C217323C5008ABC42 /* IMY_NJKWebViewProgress.m in Sources */,
+				E6E2C86E217323C5008ABC42 /* WYWeakScriptMessageDelegate.m in Sources */,
+				E6E2C85F217320CB008ABC42 /* YDScanerNaviViewController.m in Sources */,
+				E6E2C87921732BA3008ABC42 /* UIView+XBFrame.m in Sources */,
 				E695F169212D643800519A99 /* main.m in Sources */,
 				E695F15B212D643600519A99 /* AppDelegate.m in Sources */,
+				E6E2C87121732500008ABC42 /* UIColor+ARCatalog.m in Sources */,
+				E6E2C85C21732052008ABC42 /* YDScanerViewController.m in Sources */,
+				E6E2C86B217323C5008ABC42 /* ArtaWebViewController.m in Sources */,
+				E6E2C86D217323C5008ABC42 /* IMYWebView.m in Sources */,
+				E6E2C87521732A19008ABC42 /* XBWeakProxy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
