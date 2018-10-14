@@ -1,23 +1,36 @@
 //
-//  ArtaWebViewController.m
+//  YDScanWebViewController.m
 //  OLinPiKe
 //
 //  Created by 张义德 on 16/6/21.
 //  Copyright © 2016年 alta. All rights reserved.
 //
 
-#import "ArtaWebViewController.h"
+#import "YDScanWebViewController.h"
 
 #import "IMYWebView.h"
 
 #import "UtinityDefine.h"
 
-@interface ArtaWebViewController ()<UIWebViewDelegate,IMYWebViewDelegate>
+@interface YDScanWebViewController ()<UIWebViewDelegate,IMYWebViewDelegate>
 @property (nonatomic,strong) ArtaWebProgressView *progressBar;//进度条
 @property (nonatomic,strong) IMYWebView *webView;
+@property (nonatomic,strong) UILabel *labelURl;
 @end
 
-@implementation ArtaWebViewController
+@implementation YDScanWebViewController
+
+-(UILabel *)labelURl
+{
+    if (!_labelURl) {
+        _labelURl = [[UILabel alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        _labelURl.textColor = [UIColor blackColor];
+        _labelURl.textAlignment = NSTextAlignmentNatural;
+        _labelURl.contentMode = UIViewContentModeTopLeft;
+        [self.view addSubview:_labelURl];
+    }
+    return _labelURl;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -52,7 +65,12 @@
 -(void)createWebView
 {
 
-    [self createIWKWebView];
+    if ([self.loadURL.absoluteString containsString:@"http"]) {
+        [self createIWKWebView];
+    }else{
+        self.labelURl.text = self.loadURL.absoluteString;
+        [self.labelURl sizeToFit];
+    }
     
 }
 #pragma mark -  WKWebView
@@ -74,11 +92,7 @@
     }else if(self.loadType == ArtaWebLoadTypeLoacalH5){
         [_webView loadHTMLString:self.loadHTMLString baseURL:self.loadURL];
     }
-    [_webView evaluateJavaScript:@"title" completionHandler:^(id name, NSError *error) {
-        NSLog(@"%@",name);
-    }];
-    self.title = @"百度百科";
-    
+
     ArtaWebProgressView *progressBar = [[ArtaWebProgressView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 3) progressHeight:3];
     [self.view addSubview:progressBar];
     self.progressBar = progressBar;

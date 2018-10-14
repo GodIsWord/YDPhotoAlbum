@@ -28,5 +28,9 @@
     self.viewControllers = @[group];
 }
 
+-(UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
 
 @end

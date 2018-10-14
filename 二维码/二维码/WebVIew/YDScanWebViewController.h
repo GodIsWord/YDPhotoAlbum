@@ -1,5 +1,5 @@
 //
-//  ArtaWebViewController.h
+//  YDScanWebViewController.h
 //  OLinPiKe
 //
 //  Created by  on 16/6/21.
@@ -20,7 +20,7 @@ typedef NS_ENUM(NSUInteger, ArtaWebLoadType) {
     ArtaWebLoadTypeLoacalH5
 };
 
-@interface ArtaWebViewController : UIViewController
+@interface YDScanWebViewController : UIViewController
 
 @property (nonatomic,strong) NSURL *loadURL;
 @property (nonatomic,strong) NSString *loadHTMLString;

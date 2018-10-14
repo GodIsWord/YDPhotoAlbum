@@ -8,14 +8,15 @@
 
 #import "YDScanerViewController.h"
 #import <AVFoundation/AVFoundation.h>
-#import "ArtaWebViewController.h"
+#import "YDScanWebViewController.h"
 #import "UIView+XBFrame.h"
 #import "XBWeakProxy.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 @interface YDScanerViewController ()<AVCaptureMetadataOutputObjectsDelegate,CALayerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
-@property(nonatomic,strong) UIView *scanLine;
-@property(nonatomic,strong) UIView *scanView;
+@property(nonatomic,strong) UIImageView *scanLine;
+@property(nonatomic,strong) UIImageView *scanView;
 @property(nonatomic,strong) UILabel *resultLabel;
 
 @property(nonatomic,strong) CALayer *maskLayer;
@@ -58,6 +59,11 @@
 {
     [super viewWillAppear:animated];
     [self startSaomiao];
+}
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self stopSaomiao];
 }
 -(void)scanLineMove
 {
@@ -123,12 +129,13 @@
     CGFloat screenWidth = self.view.bounds.size.width;
     CGFloat screenHight = self.view.bounds.size.height;
     
-    self.scanView = [[UIView alloc] initWithFrame:CGRectMake(0.2*screenWidth, 0.3*screenHight, 0.6*screenWidth, 0.6*screenWidth)];
+    self.scanView = [[UIImageView alloc] initWithFrame:CGRectMake(0.2*screenWidth, 0.3*screenHight, 0.6*screenWidth, 0.6*screenWidth)];
+    self.scanView.image = [UIImage imageNamed:@"scan_circle@2x"];
     [self.view addSubview:self.scanView];
     self.scanView.center = self.view.center;
     
-    self.scanLine = [[UIView alloc] initWithFrame:CGRectMake(self.scanView.xb_x, self.scanView.xb_y, self.scanView.xb_width, 1)];
-    self.scanLine.backgroundColor = [UIColor redColor];
+    self.scanLine = [[UIImageView alloc] initWithFrame:CGRectMake(self.scanView.xb_x, self.scanView.xb_y, self.scanView.xb_width, 1)];
+    self.scanLine.image = [UIImage imageNamed:@"scan_line@2x"];
     [self.view addSubview:self.scanLine];
     
     
@@ -257,29 +264,24 @@
  */
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection{
     
-    if(metadataObjects.count > 0 && metadataObjects != nil){
+    if(metadataObjects.count > 0){
         
         
-        AVMetadataMachineReadableCodeObject *metadataObject = [metadataObjects lastObject];
-        
-        if (!metadataObject) {
-            return;
-        }
-        
-        NSString *result = metadataObject.stringValue;
-        
-        NSLog(@"result:%@",result);
-        self.resultLabel.text = result;
-        
-        [self stopSaomiao];
-        
-        if (result.length<=0) {
-            return;
-        }
-        if ([result containsString:@"http"]) {
-            ArtaWebViewController *webView = [[ArtaWebViewController alloc] init];
-            webView.loadURL = [NSURL URLWithString:@"https://baike.baidu.com/item/github/10145341?fr=aladdin"];
-            [self.navigationController pushViewController:webView animated:YES];
+        id lastObject = [metadataObjects lastObject];
+        if ([lastObject isKindOfClass:AVMetadataMachineReadableCodeObject.class]) {
+            AVMetadataMachineReadableCodeObject *metadataObject = (AVMetadataMachineReadableCodeObject *)lastObject;
+            if (!metadataObject) {
+                return;
+            }
+            
+            NSString *result = metadataObject.stringValue;
+            
+            NSLog(@"result:%@",result);
+            
+            [self stopSaomiao];
+            
+            [self scanSuccessPush:result];
+            
         }
         
     }
@@ -288,7 +290,7 @@
 }
 
 
--(void)redPicture:(UIImage*)image{
+-(void)readPictureToScaner:(UIImage*)image{
     
     CIDetector *detector = [CIDetector detectorOfType:CIDetectorTypeQRCode context:nil options:@{CIDetectorAccuracy:CIDetectorAccuracyHigh}];
     CIImage *ciImage = [CIImage imageWithCGImage:image.CGImage];
@@ -298,10 +300,27 @@
     }
     CIQRCodeFeature *feature = [features lastObject];
     NSString *scannedResult = feature.messageString;
-    NSLog(@"识别结果 %@",feature);
+    NSLog(@"识别结果 %@",scannedResult);
     
-    self.resultLabel.text = scannedResult;
+    [self scanSuccessPush:scannedResult];
+}
+-(void)scanSuccessPush:(NSString*)scanResult
+{
+    self.resultLabel.text = scanResult;
     
+    NSString *audioFile=[[NSBundle mainBundle] pathForResource:@"scanSuccess" ofType:@"wav"];
+    NSURL *fileUrl=[NSURL fileURLWithPath:audioFile];
+    //1.获得系统声音ID
+    SystemSoundID soundID=9333;
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)(fileUrl), &soundID);
+    AudioServicesPlaySystemSound(soundID);
+    
+    if (scanResult.length<=0) {
+        return;
+    }
+    YDScanWebViewController *webView = [[YDScanWebViewController alloc] init];
+    webView.loadURL = [NSURL URLWithString:scanResult];
+    [self.navigationController pushViewController:webView animated:YES];
 }
 
 -(UIImage *)resetImage:(UIImage*)image{
@@ -342,8 +361,9 @@
 {
     NSLog(@"info:%@",info);
     UIImage *image = [self resetImage:info[UIImagePickerControllerOriginalImage]];
-    [self redPicture:image];
-    [picker dismissViewControllerAnimated:YES completion:nil];
+    [picker dismissViewControllerAnimated:YES completion:^{
+        [self readPictureToScaner:image];
+    }];
 }
 
 
