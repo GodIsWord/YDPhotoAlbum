@@ -1,0 +1,606 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E662D03121840AAC00A6B9E9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E662D03021840AAC00A6B9E9 /* AppDelegate.m */; };
+		E662D03421840AAC00A6B9E9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E662D03321840AAC00A6B9E9 /* ViewController.m */; };
+		E662D03721840AAC00A6B9E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E662D03521840AAC00A6B9E9 /* Main.storyboard */; };
+		E662D03921840AAE00A6B9E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E662D03821840AAE00A6B9E9 /* Assets.xcassets */; };
+		E662D03C21840AAE00A6B9E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E662D03A21840AAE00A6B9E9 /* LaunchScreen.storyboard */; };
+		E662D03F21840AAE00A6B9E9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E662D03E21840AAE00A6B9E9 /* main.m */; };
+		E662D04921840AAE00A6B9E9 /* ____Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = E662D04821840AAE00A6B9E9 /* ____Tests.m */; };
+		E662D05421840AAF00A6B9E9 /* ____UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E662D05321840AAF00A6B9E9 /* ____UITests.m */; };
+		E662D17A2184262B00A6B9E9 /* YDCamoraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E662D1792184262B00A6B9E9 /* YDCamoraViewController.m */; };
+		E662D17D2184297B00A6B9E9 /* CamoraAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E662D17C2184297B00A6B9E9 /* CamoraAssets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E662D04521840AAE00A6B9E9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E662D02421840AAC00A6B9E9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E662D02B21840AAC00A6B9E9;
+			remoteInfo = "水印拍照";
+		};
+		E662D05021840AAF00A6B9E9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E662D02421840AAC00A6B9E9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E662D02B21840AAC00A6B9E9;
+			remoteInfo = "水印拍照";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E662D02C21840AAC00A6B9E9 /* 水印拍照.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "水印拍照.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E662D02F21840AAC00A6B9E9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		E662D03021840AAC00A6B9E9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		E662D03221840AAC00A6B9E9 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		E662D03321840AAC00A6B9E9 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		E662D03621840AAC00A6B9E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E662D03821840AAE00A6B9E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E662D03B21840AAE00A6B9E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E662D03D21840AAE00A6B9E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E662D03E21840AAE00A6B9E9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E662D04421840AAE00A6B9E9 /* 水印拍照Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "水印拍照Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E662D04821840AAE00A6B9E9 /* ____Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "____Tests.m"; sourceTree = "<group>"; };
+		E662D04A21840AAE00A6B9E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E662D04F21840AAF00A6B9E9 /* 水印拍照UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "水印拍照UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E662D05321840AAF00A6B9E9 /* ____UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "____UITests.m"; sourceTree = "<group>"; };
+		E662D05521840AAF00A6B9E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E662D1782184262B00A6B9E9 /* YDCamoraViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YDCamoraViewController.h; sourceTree = "<group>"; };
+		E662D1792184262B00A6B9E9 /* YDCamoraViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YDCamoraViewController.m; sourceTree = "<group>"; };
+		E662D17C2184297B00A6B9E9 /* CamoraAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CamoraAssets.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E662D02921840AAC00A6B9E9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E662D04121840AAE00A6B9E9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E662D04C21840AAF00A6B9E9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E662D02321840AAC00A6B9E9 = {
+			isa = PBXGroup;
+			children = (
+				E662D02E21840AAC00A6B9E9 /* 水印拍照 */,
+				E662D04721840AAE00A6B9E9 /* 水印拍照Tests */,
+				E662D05221840AAF00A6B9E9 /* 水印拍照UITests */,
+				E662D02D21840AAC00A6B9E9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E662D02D21840AAC00A6B9E9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E662D02C21840AAC00A6B9E9 /* 水印拍照.app */,
+				E662D04421840AAE00A6B9E9 /* 水印拍照Tests.xctest */,
+				E662D04F21840AAF00A6B9E9 /* 水印拍照UITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E662D02E21840AAC00A6B9E9 /* 水印拍照 */ = {
+			isa = PBXGroup;
+			children = (
+				E662D1772184260800A6B9E9 /* ShuiYinCamora */,
+				E662D02F21840AAC00A6B9E9 /* AppDelegate.h */,
+				E662D03021840AAC00A6B9E9 /* AppDelegate.m */,
+				E662D03221840AAC00A6B9E9 /* ViewController.h */,
+				E662D03321840AAC00A6B9E9 /* ViewController.m */,
+				E662D03521840AAC00A6B9E9 /* Main.storyboard */,
+				E662D03821840AAE00A6B9E9 /* Assets.xcassets */,
+				E662D03A21840AAE00A6B9E9 /* LaunchScreen.storyboard */,
+				E662D03D21840AAE00A6B9E9 /* Info.plist */,
+				E662D03E21840AAE00A6B9E9 /* main.m */,
+			);
+			path = "水印拍照";
+			sourceTree = "<group>";
+		};
+		E662D04721840AAE00A6B9E9 /* 水印拍照Tests */ = {
+			isa = PBXGroup;
+			children = (
+				E662D04821840AAE00A6B9E9 /* ____Tests.m */,
+				E662D04A21840AAE00A6B9E9 /* Info.plist */,
+			);
+			path = "水印拍照Tests";
+			sourceTree = "<group>";
+		};
+		E662D05221840AAF00A6B9E9 /* 水印拍照UITests */ = {
+			isa = PBXGroup;
+			children = (
+				E662D05321840AAF00A6B9E9 /* ____UITests.m */,
+				E662D05521840AAF00A6B9E9 /* Info.plist */,
+			);
+			path = "水印拍照UITests";
+			sourceTree = "<group>";
+		};
+		E662D1772184260800A6B9E9 /* ShuiYinCamora */ = {
+			isa = PBXGroup;
+			children = (
+				E662D17B2184264000A6B9E9 /* Reasource */,
+				E662D1782184262B00A6B9E9 /* YDCamoraViewController.h */,
+				E662D1792184262B00A6B9E9 /* YDCamoraViewController.m */,
+			);
+			path = ShuiYinCamora;
+			sourceTree = "<group>";
+		};
+		E662D17B2184264000A6B9E9 /* Reasource */ = {
+			isa = PBXGroup;
+			children = (
+				E662D17C2184297B00A6B9E9 /* CamoraAssets.xcassets */,
+			);
+			path = Reasource;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E662D02B21840AAC00A6B9E9 /* 水印拍照 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E662D05821840AAF00A6B9E9 /* Build configuration list for PBXNativeTarget "水印拍照" */;
+			buildPhases = (
+				E662D02821840AAC00A6B9E9 /* Sources */,
+				E662D02921840AAC00A6B9E9 /* Frameworks */,
+				E662D02A21840AAC00A6B9E9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "水印拍照";
+			productName = "水印拍照";
+			productReference = E662D02C21840AAC00A6B9E9 /* 水印拍照.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E662D04321840AAE00A6B9E9 /* 水印拍照Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E662D05B21840AAF00A6B9E9 /* Build configuration list for PBXNativeTarget "水印拍照Tests" */;
+			buildPhases = (
+				E662D04021840AAE00A6B9E9 /* Sources */,
+				E662D04121840AAE00A6B9E9 /* Frameworks */,
+				E662D04221840AAE00A6B9E9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E662D04621840AAE00A6B9E9 /* PBXTargetDependency */,
+			);
+			name = "水印拍照Tests";
+			productName = "水印拍照Tests";
+			productReference = E662D04421840AAE00A6B9E9 /* 水印拍照Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		E662D04E21840AAF00A6B9E9 /* 水印拍照UITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E662D05E21840AAF00A6B9E9 /* Build configuration list for PBXNativeTarget "水印拍照UITests" */;
+			buildPhases = (
+				E662D04B21840AAF00A6B9E9 /* Sources */,
+				E662D04C21840AAF00A6B9E9 /* Frameworks */,
+				E662D04D21840AAF00A6B9E9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E662D05121840AAF00A6B9E9 /* PBXTargetDependency */,
+			);
+			name = "水印拍照UITests";
+			productName = "水印拍照UITests";
+			productReference = E662D04F21840AAF00A6B9E9 /* 水印拍照UITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E662D02421840AAC00A6B9E9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = "yide zhang";
+				TargetAttributes = {
+					E662D02B21840AAC00A6B9E9 = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+					E662D04321840AAE00A6B9E9 = {
+						CreatedOnToolsVersion = 9.4.1;
+						TestTargetID = E662D02B21840AAC00A6B9E9;
+					};
+					E662D04E21840AAF00A6B9E9 = {
+						CreatedOnToolsVersion = 9.4.1;
+						TestTargetID = E662D02B21840AAC00A6B9E9;
+					};
+				};
+			};
+			buildConfigurationList = E662D02721840AAC00A6B9E9 /* Build configuration list for PBXProject "水印拍照" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E662D02321840AAC00A6B9E9;
+			productRefGroup = E662D02D21840AAC00A6B9E9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E662D02B21840AAC00A6B9E9 /* 水印拍照 */,
+				E662D04321840AAE00A6B9E9 /* 水印拍照Tests */,
+				E662D04E21840AAF00A6B9E9 /* 水印拍照UITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E662D02A21840AAC00A6B9E9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E662D03C21840AAE00A6B9E9 /* LaunchScreen.storyboard in Resources */,
+				E662D03921840AAE00A6B9E9 /* Assets.xcassets in Resources */,
+				E662D03721840AAC00A6B9E9 /* Main.storyboard in Resources */,
+				E662D17D2184297B00A6B9E9 /* CamoraAssets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E662D04221840AAE00A6B9E9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E662D04D21840AAF00A6B9E9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E662D02821840AAC00A6B9E9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E662D03421840AAC00A6B9E9 /* ViewController.m in Sources */,
+				E662D03F21840AAE00A6B9E9 /* main.m in Sources */,
+				E662D17A2184262B00A6B9E9 /* YDCamoraViewController.m in Sources */,
+				E662D03121840AAC00A6B9E9 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E662D04021840AAE00A6B9E9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E662D04921840AAE00A6B9E9 /* ____Tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E662D04B21840AAF00A6B9E9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E662D05421840AAF00A6B9E9 /* ____UITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E662D04621840AAE00A6B9E9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E662D02B21840AAC00A6B9E9 /* 水印拍照 */;
+			targetProxy = E662D04521840AAE00A6B9E9 /* PBXContainerItemProxy */;
+		};
+		E662D05121840AAF00A6B9E9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E662D02B21840AAC00A6B9E9 /* 水印拍照 */;
+			targetProxy = E662D05021840AAF00A6B9E9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E662D03521840AAC00A6B9E9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E662D03621840AAC00A6B9E9 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		E662D03A21840AAE00A6B9E9 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E662D03B21840AAE00A6B9E9 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E662D05621840AAF00A6B9E9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		E662D05721840AAF00A6B9E9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E662D05921840AAF00A6B9E9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = S734R9XHYJ;
+				INFOPLIST_FILE = "水印拍照/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.arta.----";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E662D05A21840AAF00A6B9E9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = S734R9XHYJ;
+				INFOPLIST_FILE = "水印拍照/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.arta.----";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		E662D05C21840AAF00A6B9E9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "水印拍照Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.arta.----Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/水印拍照.app/水印拍照";
+			};
+			name = Debug;
+		};
+		E662D05D21840AAF00A6B9E9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "水印拍照Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.arta.----Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/水印拍照.app/水印拍照";
+			};
+			name = Release;
+		};
+		E662D05F21840AAF00A6B9E9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "水印拍照UITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.arta.----UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "水印拍照";
+			};
+			name = Debug;
+		};
+		E662D06021840AAF00A6B9E9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "水印拍照UITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.arta.----UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "水印拍照";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E662D02721840AAC00A6B9E9 /* Build configuration list for PBXProject "水印拍照" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E662D05621840AAF00A6B9E9 /* Debug */,
+				E662D05721840AAF00A6B9E9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E662D05821840AAF00A6B9E9 /* Build configuration list for PBXNativeTarget "水印拍照" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E662D05921840AAF00A6B9E9 /* Debug */,
+				E662D05A21840AAF00A6B9E9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E662D05B21840AAF00A6B9E9 /* Build configuration list for PBXNativeTarget "水印拍照Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E662D05C21840AAF00A6B9E9 /* Debug */,
+				E662D05D21840AAF00A6B9E9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E662D05E21840AAF00A6B9E9 /* Build configuration list for PBXNativeTarget "水印拍照UITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E662D05F21840AAF00A6B9E9 /* Debug */,
+				E662D06021840AAF00A6B9E9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E662D02421840AAC00A6B9E9 /* Project object */;
+}
