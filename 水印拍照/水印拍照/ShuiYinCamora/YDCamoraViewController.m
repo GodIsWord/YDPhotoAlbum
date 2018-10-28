@@ -15,6 +15,7 @@
 #import <AVFoundation/AVFoundation.h>
 //将拍摄好的照片写入系统相册中，所以我们在这里还需要导入一个相册需要的头文件iOS8
 #import <Photos/Photos.h>
+#import "YDWeakProxy.h"
 
 @interface YDCamoraViewController ()
 
@@ -53,10 +54,22 @@
 @property (nonatomic,strong) UILabel  *userlabel;//用户名称
 @property (nonatomic,strong) UILabel  *locationlabel;//定位信息
 
+@property (nonatomic, strong) UIButton *okBtn;//拍照确认使用按钮
+@property (nonatomic, strong) UIButton *cancleBtn;//拍照确认使用按钮
+
+@property (nonatomic, strong) UILabel *tishiLabel;//提示用的label
+
+@property (nonatomic, strong) NSTimer *timer;//时间
+
 @end
 
 @implementation YDCamoraViewController
 
+-(void)dealloc
+{
+    [self.timer invalidate];
+    self.timer  = nil;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -69,6 +82,51 @@
         
 //        [self focusAtPoint:CGPointMake(0.5, 0.5)];
         
+    }
+
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:[YDWeakProxy proxyWithTarget:self] selector:@selector(getTimeAndWeakDay) userInfo:nil repeats:YES];
+}
+- (UILabel *)tishiLabel
+{
+    if(!_tishiLabel){
+        _tishiLabel = [[UILabel alloc] init];
+        [self.view addSubview:_tishiLabel];
+    }
+    [self.view bringSubviewToFront:_tishiLabel];
+    return _tishiLabel;
+}
+-(UIButton *)okBtn
+{
+    if(!_okBtn){
+        _okBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _okBtn.frame = CGRectMake(KScreenWidth/2+50, KScreenHeight - 150, 70, 70);
+        [_okBtn setImage:[UIImage imageNamed:@"post_icon_check_big"] forState:UIControlStateNormal];
+        [_okBtn addTarget:self action:@selector(picBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:_okBtn];
+    }
+    [self.view bringSubviewToFront:_okBtn];
+    return _okBtn;
+}
+-(UIButton *)cancleBtn
+{
+    if(!_cancleBtn){
+        _cancleBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _cancleBtn.frame = CGRectMake(KScreenWidth/2-50-35, KScreenHeight - 150, 70, 70);
+        [_cancleBtn setImage:[UIImage imageNamed:@"post_icon_voice_clear_normal"] forState:UIControlStateNormal];
+        [_cancleBtn addTarget:self action:@selector(picBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:_cancleBtn];
+    }
+    [self.view bringSubviewToFront:_cancleBtn];
+    return _cancleBtn;
+}
+-(void)picBtnAction:(UIButton*)btn
+{
+    if(btn==self.okBtn){
+        //保存图片
+        [self saveImageWithImage:[self snapshotSingleView:self.pictureImageView]];
+    }else if (btn == self.cancleBtn){
+        //取消 继续拍照
+        [self hiddenPictureResult];
     }
 }
 - (void)customCamera
@@ -91,7 +149,6 @@
     
     if ([self.session canAddInput:self.input]) {
         [self.session addInput:self.input];
-        
     }
     
     if ([self.session canAddOutput:self.ImageOutPut]) {
@@ -122,8 +179,6 @@
 
         //解锁
         [self.device unlockForConfiguration];
-
-
     }
     
 }
@@ -131,7 +186,8 @@
 
 - (void)initSubViews
 {
-    
+    [self initTakePictureSubbView];
+    [self initPictureShowSubbView];
     
 }
 
@@ -159,6 +215,7 @@
     bottomBackView.userInteractionEnabled = YES;
     [self.view addSubview:bottomBackView];
     
+    //拍照
     self.photoButton = [UIButton new];
     self.photoButton.frame = CGRectMake(KScreenWidth/2-35, 0, 70, 70);
     [self.photoButton setImage:[UIImage imageNamed:@"photograph"] forState:UIControlStateNormal];
@@ -194,6 +251,7 @@
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(focusGesture:)];
     [self.view addGestureRecognizer:tapGesture];
+    
 }
 //显示拍完照之后的图片的view
 - (void)initPictureShowSubbView
@@ -222,16 +280,24 @@
     [imageViewPicture addSubview:dateLabel];
     self.dateLabel = dateLabel;
     
-    
-    
-    
-    
 }
 
+- (void)showPicturResult
+{
+    self.okBtn.hidden = NO;
+    self.cancleBtn.hidden = NO;
+}
+
+- (void)hiddenPictureResult
+{
+    self.okBtn.hidden = YES;
+    self.cancleBtn.hidden = YES;
+    self.pictureImageView.image = nil;
+}
 
 - (void)focusGesture:(UITapGestureRecognizer*)gesture{
-    CGPoint point = [gesture locationInView:gesture.view];
-    [self focusAtPoint:point];
+//    CGPoint point = [gesture locationInView:gesture.view];
+//    [self focusAtPoint:point];
 }
 - (void)focusAtPoint:(CGPoint)point{
     CGSize size = self.view.bounds.size;
@@ -354,6 +420,7 @@
         return;
     }
     
+    __weak typeof(self) weakSelf = self;
     [self.ImageOutPut captureStillImageAsynchronouslyFromConnection:videoConnection completionHandler:^(CMSampleBufferRef imageDataSampleBuffer, NSError *error) {
         
         if (imageDataSampleBuffer == nil) {
@@ -361,8 +428,9 @@
         }
         
         NSData *imageData =  [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
-        [self saveImageWithImage:[UIImage imageWithData:imageData]];
         
+        weakSelf.pictureImageView.image = [UIImage imageWithData:imageData];
+        [weakSelf showPicturResult];
         
     }];
     
@@ -372,6 +440,7 @@
  */
 - (void)saveImageWithImage:(UIImage *)image {
     // 判断授权状态
+    __weak typeof(self) weakSelf = self;
     [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
         if (status != PHAuthorizationStatusAuthorized) return;
         
@@ -382,24 +451,34 @@
             __block PHObjectPlaceholder *createdAsset = nil;
             [[PHPhotoLibrary sharedPhotoLibrary] performChangesAndWait:^{
                 createdAsset = [PHAssetCreationRequest creationRequestForAssetFromImage:image].placeholderForCreatedAsset;
+                [weakSelf hiddenPictureResult];
+                [weakSelf showTishiLabelWithText:@"保存成功"];
             } error:&error];
             
             if (error) {
+                [weakSelf showTishiLabelWithText:@"保存失败"];
                 NSLog(@"保存失败：%@", error);
                 return;
             }
         });
     }];
 }
-
-
-
+-(void)showTishiLabelWithText:(NSString*)str
+{
+    self.tishiLabel.text = str;
+    [self.tishiLabel sizeToFit];
+    self.tishiLabel.center = CGPointMake(KScreenWidth/2, KScreenHeight/2);
+    [self performSelector:@selector(hiddenTishiLabel) withObject:nil afterDelay:2];
+}
+-(void)hiddenTishiLabel
+{
+    self.tishiLabel.hidden = YES;
+}
 
 - (void)disMiss
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
 
 
 #pragma mark- 检测相机权限
@@ -437,9 +516,67 @@
     
 }
 
+-(UIImage *)snapshotSingleView:(UIView *)view
+{
+    UIGraphicsBeginImageContextWithOptions(view.bounds.size, NO, 0.0);
+    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
 -(BOOL)prefersStatusBarHidden
 {
     return YES;
 }
+#pragma mark --- 时间和日期的作用
+
+- (void)getTimeAndWeakDay
+{
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitYear| NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitWeekOfYear |  NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond | NSCalendarUnitWeekday | NSCalendarUnitWeekdayOrdinal fromDate:[NSDate date]];
+    self.timeLabel.text = [NSString stringWithFormat:@"%ld:%ld",(long)components.hour,(long)components.minute];
+    self.dateLabel.text = [NSString stringWithFormat:@"%ld年%ld月%ld日 %@",components.year,components.month,components.day,[self formatWeekDayWithType:components.weekday]];
+    NSLog(@"timer:%d",components.second);
+}
+
+-(NSString *)formatWeekDayWithType:(NSInteger)type
+{
+    NSString *weekStr=nil;
+    switch (type) {
+        case 2:
+        weekStr = @"星期一";
+        break;
+        case 3:
+        weekStr = @"星期二";
+        break;
+        case 4:
+        weekStr = @"星期三";
+        break;
+        case 5:
+        weekStr = @"星期四";
+        break;
+        case 6:
+        weekStr = @"星期五";
+        break;
+        case 7:
+        weekStr = @"星期六";
+        break;
+        case 1:
+        weekStr = @"星期天";
+        break;
+        default:
+        break;
+    }
+    return weekStr;
+}
 
 @end
+
+
+
+
+
+
+
+
+
