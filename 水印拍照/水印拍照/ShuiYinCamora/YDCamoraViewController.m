@@ -19,32 +19,39 @@
 @interface YDCamoraViewController ()
 
 //捕获设备，通常是前置摄像头，后置摄像头，麦克风（音频输入）
-@property(nonatomic)AVCaptureDevice *device;
+@property(nonatomic,strong)AVCaptureDevice *device;
 
 //AVCaptureDeviceInput 代表输入设备，他使用AVCaptureDevice 来初始化
-@property(nonatomic)AVCaptureDeviceInput *input;
+@property(nonatomic,strong)AVCaptureDeviceInput *input;
 
 //当启动摄像头开始捕获输入
-@property(nonatomic)AVCaptureMetadataOutput *output;
+@property(nonatomic,strong)AVCaptureMetadataOutput *output;
 
 //照片输出流
-@property (nonatomic)AVCaptureStillImageOutput *ImageOutPut;
+@property (nonatomic,strong)AVCaptureStillImageOutput *ImageOutPut;
 
 //session：由他把输入输出结合在一起，并开始启动捕获设备（摄像头）
-@property(nonatomic)AVCaptureSession *session;
+@property(nonatomic,strong)AVCaptureSession *session;
 
 //图像预览层，实时显示捕获的图像
-@property(nonatomic)AVCaptureVideoPreviewLayer *previewLayer;
+@property(nonatomic,strong)AVCaptureVideoPreviewLayer *previewLayer;
 
 // ------------- UI --------------
 //拍照按钮
-@property (nonatomic)UIButton *photoButton;
+@property (nonatomic,strong)UIButton *photoButton;
 //闪光灯按钮
-@property (nonatomic)UIButton *flashButton;
+@property (nonatomic,strong)UIButton *flashButton;
+//翻转摄像头按钮
+@property (nonatomic,strong)UIButton *flapCamora;
 //聚焦
-@property (nonatomic)UIView *focusView;
-//是否开启闪光灯
-@property (nonatomic)BOOL isflashOn;
+@property (nonatomic,strong)UIView *focusView;
+
+//拍摄后图片的imageView
+@property (nonatomic,strong) UIImageView *pictureImageView;
+@property (nonatomic,strong) UILabel  *timeLabel;//时分秒显示
+@property (nonatomic,strong) UILabel  *dateLabel;//日期 年月日显示
+@property (nonatomic,strong) UILabel  *userlabel;//用户名称
+@property (nonatomic,strong) UILabel  *locationlabel;//定位信息
 
 @end
 
@@ -60,7 +67,7 @@
         [self customCamera];
         [self initSubViews];
         
-        [self focusAtPoint:CGPointMake(0.5, 0.5)];
+//        [self focusAtPoint:CGPointMake(0.5, 0.5)];
         
     }
 }
@@ -102,39 +109,81 @@
     
     //修改设备的属性，先加锁
     if ([self.device lockForConfiguration:nil]) {
-        
+
         //闪光灯自动
         if ([self.device isFlashModeSupported:AVCaptureFlashModeAuto]) {
             [self.device setFlashMode:AVCaptureFlashModeAuto];
         }
-        
+
         //自动白平衡
         if ([self.device isWhiteBalanceModeSupported:AVCaptureWhiteBalanceModeContinuousAutoWhiteBalance]) {
             [self.device setWhiteBalanceMode:AVCaptureWhiteBalanceModeContinuousAutoWhiteBalance];
         }
-        
+
         //解锁
         [self.device unlockForConfiguration];
-        
-        
+
+
     }
     
 }
 
+
 - (void)initSubViews
 {
-    UIButton *btn = [UIButton new];
-    btn.frame = CGRectMake(20, 20, 40, 40);
-    [btn setTitle:@"取消" forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(disMiss) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:btn];
     
+    
+}
+
+//初始化拍照相关的subbView
+-(void)initTakePictureSubbView
+{
+    //头部导航栏的背景
+    UIView *headerBackView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 44)];
+    headerBackView.backgroundColor = [UIColor colorWithWhite:0 alpha:0];
+    headerBackView.userInteractionEnabled = YES;
+    [self.view addSubview:headerBackView];
+    
+    
+    //闪光灯的开关
+    self.flashButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.flashButton.frame = CGRectMake(KScreenWidth-60, 0, 44, 44);
+    [self.flashButton setImage:[UIImage imageNamed:@"shanguangdengkai_normal"] forState:UIControlStateNormal];
+    [self.flashButton setImage:[UIImage imageNamed:@"shanguangdengguanbi_normal"] forState:UIControlStateSelected];
+    [self.flashButton setImageEdgeInsets:UIEdgeInsetsMake(5, 10, 5, 3)];
+    [ self.flashButton addTarget:self action:@selector(flashAction:) forControlEvents:UIControlEventTouchUpInside];
+    [headerBackView addSubview: self.flashButton];
+    
+    UIView *bottomBackView = [[UIView alloc] initWithFrame:CGRectMake(0, KScreenHeight-120, KScreenWidth, 120)];
+    bottomBackView.backgroundColor = [UIColor clearColor];
+    bottomBackView.userInteractionEnabled = YES;
+    [self.view addSubview:bottomBackView];
     
     self.photoButton = [UIButton new];
-    self.photoButton.frame = CGRectMake(KScreenWidth/2.0-30, KScreenHeight-100, 60, 60);
+    self.photoButton.frame = CGRectMake(KScreenWidth/2-35, 0, 70, 70);
     [self.photoButton setImage:[UIImage imageNamed:@"photograph"] forState:UIControlStateNormal];
     [self.photoButton addTarget:self action:@selector(shutterCamera) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.photoButton];
+    [bottomBackView addSubview:self.photoButton];
+    
+    //取消
+    UIButton *btn = [UIButton new];
+    btn.frame = CGRectMake(KScreenWidth/2 - 100, 5, 40, 40);
+    [btn setImage:[UIImage imageNamed:@"post_icon_xiatui_normal"] forState:UIControlStateNormal];
+    [btn setImageEdgeInsets:UIEdgeInsetsMake(5, 5, 5, 5)];
+    [btn addTarget:self action:@selector(disMiss) forControlEvents:UIControlEventTouchUpInside];
+    btn.center = CGPointMake(btn.center.x, self.photoButton.center.y);
+    [bottomBackView addSubview:btn];
+    
+    
+    
+    //翻转摄像头
+    UIButton *flashButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    flashButton.frame = CGRectMake(KScreenWidth/2 + 60, 0, 44, 44);
+    [flashButton setBackgroundImage:[UIImage imageNamed:@"post_icon_huanjingtou_normal"] forState:UIControlStateNormal];
+    flashButton.center = CGPointMake(flashButton.center.x, self.photoButton.center.y);
+    [flashButton addTarget:self action:@selector(changeCamera) forControlEvents:UIControlEventTouchUpInside];
+    [bottomBackView addSubview:flashButton];
+    self.flashButton = flashButton;
     
     self.focusView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 80, 80)];
     self.focusView.layer.borderWidth = 1.0;
@@ -142,28 +191,43 @@
     [self.view addSubview:self.focusView];
     self.focusView.hidden = YES;
     
-    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [leftButton setTitle:@"切换" forState:UIControlStateNormal];
-    leftButton.titleLabel.textAlignment = NSTextAlignmentCenter;
-    [leftButton sizeToFit];
-    leftButton.center = CGPointMake((KScreenWidth - 60)/2.0/2.0, KScreenHeight-70);
-    [leftButton addTarget:self action:@selector(changeCamera) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:leftButton];
-    
-    
-    
-    self.flashButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [ self.flashButton setTitle:@"闪光灯关" forState:UIControlStateNormal];
-    self.flashButton.titleLabel.textAlignment = NSTextAlignmentCenter;
-    [self.flashButton sizeToFit];
-    self.flashButton.center = CGPointMake(KScreenWidth - (KScreenWidth - 60)/2.0/2.0, KScreenHeight-70);
-    [ self.flashButton addTarget:self action:@selector(FlashOn) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview: self.flashButton];
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(focusGesture:)];
     [self.view addGestureRecognizer:tapGesture];
+}
+//显示拍完照之后的图片的view
+- (void)initPictureShowSubbView
+{
+    UIImageView *imageViewPicture = [[UIImageView alloc] initWithFrame:self.view.bounds];
+    imageViewPicture.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:imageViewPicture];
+    self.pictureImageView = imageViewPicture;
+    
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(10, 44, 4, 60)];
+    lineView.backgroundColor = [UIColor whiteColor];
+    [imageViewPicture addSubview:lineView];
+    
+    UILabel *timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(lineView.frame)+5, CGRectGetMinY(lineView.frame), KScreenWidth-100, 20)];
+    timeLabel.textColor = [UIColor whiteColor];
+    timeLabel.text = @"13:34";
+    timeLabel.font = [UIFont systemFontOfSize:18];
+    [imageViewPicture addSubview:timeLabel];
+    self.timeLabel = timeLabel;
+    
+    
+    UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(lineView.frame)+5, CGRectGetMaxY(timeLabel.frame)+5, KScreenWidth-100, 20)];
+    dateLabel.textColor = [UIColor whiteColor];
+    dateLabel.text = @"2018年10约27日 星期六";
+    dateLabel.font = [UIFont systemFontOfSize:13];
+    [imageViewPicture addSubview:dateLabel];
+    self.dateLabel = dateLabel;
+    
+    
+    
+    
     
 }
+
 
 - (void)focusGesture:(UITapGestureRecognizer*)gesture{
     CGPoint point = [gesture locationInView:gesture.view];
@@ -203,20 +267,16 @@
     
 }
 
-- (void)FlashOn{
-    
+- (void)flashAction:(UIButton*)btn{
+    btn.selected = !btn.selected;
     if ([_device lockForConfiguration:nil]) {
-        if (_isflashOn) {
+        if (btn.selected) {
             if ([_device isFlashModeSupported:AVCaptureFlashModeOff]) {
                 [_device setFlashMode:AVCaptureFlashModeOff];
-                _isflashOn = NO;
-                [_flashButton setTitle:@"闪光灯关" forState:UIControlStateNormal];
             }
         }else{
             if ([_device isFlashModeSupported:AVCaptureFlashModeOn]) {
                 [_device setFlashMode:AVCaptureFlashModeOn];
-                _isflashOn = YES;
-                [_flashButton setTitle:@"闪光灯开" forState:UIControlStateNormal];
             }
         }
         
@@ -377,5 +437,9 @@
     
 }
 
+-(BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
 
 @end
