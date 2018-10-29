@@ -8,8 +8,11 @@
 
 #import "ViewController.h"
 #import "YDCamoraViewController.h"
+#import "YDLoacationManager.h"
 
 @interface ViewController ()
+
+
 
 @end
 
@@ -18,7 +21,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(100, 100, 100, 100);
     [btn setTitle:@"打开相机" forState:UIControlStateNormal];
@@ -32,4 +34,10 @@
     YDCamoraViewController *camora = [[YDCamoraViewController alloc] init];
     [self presentViewController:camora animated:YES completion:nil];
 }
+
+
+
+
+
+
 @end
