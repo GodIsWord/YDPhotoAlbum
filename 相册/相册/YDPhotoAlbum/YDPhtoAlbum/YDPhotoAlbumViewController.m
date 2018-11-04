@@ -72,23 +72,11 @@ static NSString *const headerId = @"headerId";
         
         NSMutableArray *array = [NSMutableArray array];
         for (PHAsset *asset in self.arrSelected) {
-            CGFloat scale = [UIScreen mainScreen].scale;
-//            CGSize AssetGridThumbnailSize = CGSizeMake(cellSize.width * scale, cellSize.height * scale);
-//            [[PHCachingImageManager defaultManager] requestImageForAsset:asset targetSize:AssetGridThumbnailSize contentMode:PHImageContentModeAspectFit options:nil resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-//                [array addObject:result];
-//            }];
-//
-            
-//            [[PHCachingImageManager defaultManager] requestImageDataForAsset:asset options:n resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
-//                UIImage * result = [UIImage imageWithData:imageData];
-//                
-//                BOOL downloadFinined = (![[info objectForKey:PHImageCancelledKey] boolValue] && ![info objectForKey:PHImageErrorKey]);
-//                if (downloadFinined && result) {
-//                    
-//                }
-//            }];
+            [YDPhotoAlbumManager fetchHighQualityImageDataWithAsset:asset progress:nil complate:^(NSData *result) {
+                [array addObject:result];
+            }];
         }
-        [self.finishDelegate YDPhotoAlbumViewControllerSelectFinishResult:self.arrSelected];
+        [self.finishDelegate YDPhotoAlbumViewControllerSelectFinishResult:array];
     }
 }
 -(void)initBottomView
