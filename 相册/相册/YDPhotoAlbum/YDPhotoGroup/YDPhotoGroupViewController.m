@@ -38,8 +38,14 @@ static NSString *const cellIdent = @"cellIdent";
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:YDPhotoGroupTableViewCell.class forCellReuseIdentifier:cellIdent];
     [self.view addSubview:self.tableView];
+    
+    UIBarButtonItem  *rightItem = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStyleDone target:self action:@selector(cancleAction)];
+    self.navigationItem.rightBarButtonItem = rightItem;
 }
-
+-(void)cancleAction
+{
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
 -(void)resetDataSource
 {
     [YDPhotoAlbumManager fetchPhotoGroup:^(NSArray<YDPhotoGroupModel *> *array) {

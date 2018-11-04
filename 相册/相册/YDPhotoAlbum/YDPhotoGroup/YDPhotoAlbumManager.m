@@ -54,10 +54,11 @@
                         CGSize cellSize = CGSizeMake(400,400);
                         CGSize assetGridThumbnailSize = CGSizeMake(cellSize.width * scale, cellSize.height * scale);
                         
-                        [[PHCachingImageManager defaultManager] requestImageForAsset:asset targetSize:assetGridThumbnailSize contentMode:PHImageContentModeAspectFit options:nil resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+                        [array addObject:model];
+                        
+                        [self fetchHighQualityImageAsset:asset viewSize:assetGridThumbnailSize progress:nil complate:^(UIImage *result) {
                             model.image = result;
                         }];
-                        [array addObject:model];
                     }
                 }
             }
@@ -122,14 +123,32 @@
         });
     };
     
-    [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:viewSize contentMode:PHImageContentModeAspectFit options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+    [[PHCachingImageManager defaultManager] requestImageForAsset:asset targetSize:viewSize contentMode:PHImageContentModeAspectFit options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
         if (complate) {
             complate(result);
         }
         
     }];
 }
-
++(void)fetchHighQualityImageDataWithAsset:(PHAsset *)asset progress:(void ((^)(double)))handle complate:(void ((^)(NSData *)))complate
+{
+    PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+    options.synchronous = true;
+    options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
+    options.networkAccessAllowed = YES;
+    options.progressHandler = ^(double progress, NSError *error, BOOL *stop, NSDictionary *info) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (handle) {
+                handle(progress);
+            }
+        });
+    };
+    [[PHCachingImageManager defaultManager] requestImageDataForAsset:asset options:options resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
+        if (complate) {
+            complate(imageData);
+        }
+    }];
+}
 +(void)fetchAllPhotos:(void ((^)(NSArray<PHAsset *> *)))block
 {
     [self fetchRequestJaris:^(BOOL isCanUsPhotoLibrary) {

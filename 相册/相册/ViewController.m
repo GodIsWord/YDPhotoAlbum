@@ -12,7 +12,7 @@
 #import "YDPhotoGroupViewController.h"
 #import "YDPhotoAlbumNaviViewController.h"
 
-@interface ViewController ()
+@interface ViewController ()<YDPhotoAlbumViewControllerDelegate>
 
 @end
 
@@ -37,9 +37,15 @@
 {
     YDPhotoAlbumNaviViewController *controller = [[YDPhotoAlbumNaviViewController alloc] init];
 //    [self.navigationController pushViewController:controller animated:YES];
+    controller.finishDelegate = self;
     [self presentViewController:controller animated:YES completion:nil];
 }
 
+
+-(void)YDPhotoAlbumViewControllerSelectFinishResult:(NSArray *)resultes
+{
+    
+}
 
 
 

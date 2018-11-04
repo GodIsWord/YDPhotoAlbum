@@ -7,9 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+
+@protocol YDPhotoAlbumViewControllerDelegate<NSObject>
+
+@optional
+-(void)YDPhotoAlbumViewControllerSelectFinishResult:(NSArray *)resultes;
+
+@end
+
 
 @interface YDPhotoAlbumViewController : UIViewController
 
 @property(nonatomic,strong) NSArray *dataSouce;
+
+@property(nonatomic, weak) id <YDPhotoAlbumViewControllerDelegate> finishDelegate;
 
 @end
