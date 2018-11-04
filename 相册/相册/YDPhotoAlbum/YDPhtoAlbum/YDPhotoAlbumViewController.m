@@ -21,6 +21,7 @@
 
 @property(nonatomic,strong) UILabel *bottomLabel;
 
+
 @end
 
 @implementation YDPhotoAlbumViewController
@@ -51,7 +52,7 @@ static NSString *const headerId = @"headerId";
     [collection registerClass:YDPhotoAlbumCollectionViewCell.class forCellWithReuseIdentifier:cellId];
     
     
-    UIBarButtonItem  *rightItem = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStyleDone target:self action:@selector(finishSelect:)];
+    UIBarButtonItem  *rightItem = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStyleDone target:self action:@selector(finishSelect:)];
     self.navigationItem.rightBarButtonItem = rightItem;
     
     
@@ -66,8 +67,13 @@ static NSString *const headerId = @"headerId";
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
--(void)finishSelect:(id)item
+-(void)finishSelect:(UIBarButtonItem*)item
 {
+    if ([item.title isEqualToString:@"取消"]) {
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+        return;
+    }
+    
     if ([self.finishDelegate respondsToSelector:@selector(YDPhotoAlbumViewControllerSelectFinishResult:)]) {
         
         NSMutableArray *array = [NSMutableArray array];
@@ -147,6 +153,11 @@ static NSString *const headerId = @"headerId";
             }
         }
         weakSelf.bottomLabel.text= [NSString stringWithFormat:@"%lu张",(unsigned long)weakSelf.arrSelected.count];
+        if (weakSelf.arrSelected.count >0) {
+            [weakSelf.navigationItem.rightBarButtonItem setTitle:@"完成"];
+        }else{
+            [weakSelf.navigationItem.rightBarButtonItem setTitle:@"取消"];
+        }
     }];
     return cell;
 }
