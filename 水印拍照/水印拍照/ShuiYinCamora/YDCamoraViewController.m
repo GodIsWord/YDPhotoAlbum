@@ -284,11 +284,12 @@
     [imageViewPicture addSubview:dateLabel];
     self.dateLabel = dateLabel;
     
-    UILabel *addressLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(lineView.frame)+5, CGRectGetMaxY(dateLabel.frame)+5, KScreenWidth-100, 20)];
+    UILabel *addressLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(lineView.frame)+5, CGRectGetMaxY(dateLabel.frame)+5, KScreenWidth-40, 20)];
     addressLabel.textColor = [UIColor whiteColor];
     addressLabel.text =  [YDLoacationManager address];
     addressLabel.font = [UIFont systemFontOfSize:13];
     [imageViewPicture addSubview:addressLabel];
+    addressLabel.numberOfLines = 0;
     self.locationlabel = addressLabel;
     
 //    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitYear| NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitWeekOfYear |  NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond | NSCalendarUnitWeekday | NSCalendarUnitWeekdayOrdinal fromDate:[NSDate date]];
@@ -552,6 +553,7 @@
     self.timeLabel.text = [NSString stringWithFormat:@"%02ld:%02ld",(long)components.hour,(long)components.minute];
     self.dateLabel.text = [NSString stringWithFormat:@"%ld年%02ld月%02ld日 %@",components.year,components.month,components.day,[self formatWeekDayWithType:components.weekday]];
     self.locationlabel.text = [YDLoacationManager address];
+    [self.locationlabel sizeToFit];
     
 }
 

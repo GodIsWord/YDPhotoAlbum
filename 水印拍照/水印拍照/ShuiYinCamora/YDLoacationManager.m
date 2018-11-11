@@ -10,6 +10,8 @@
 
 #import <CoreLocation/CoreLocation.h>
 
+#import "YDCoverLocation.h"
+
 @interface YDLoacationManager()<CLLocationManagerDelegate>
 
 @property (strong,nonatomic) CLGeocoder *geocoder;
@@ -58,7 +60,8 @@ static YDLoacationManager *manager;
         _locationMgr = [[CLLocationManager alloc] init];
         _locationMgr.delegate = self;
         _locationMgr.desiredAccuracy = kCLLocationAccuracyBest;
-        _locationMgr.distanceFilter = 10.0f;
+        _locationMgr.distanceFilter = kCLDistanceFilterNone;
+        [_locationMgr requestAlwaysAuthorization];
     }
     return _locationMgr;
 }
@@ -70,7 +73,15 @@ static YDLoacationManager *manager;
      反编码
      */
     //获取经纬度坐标
-    CLLocation *location = [[CLLocation alloc] initWithLatitude:cl.coordinate.latitude longitude:cl.coordinate.longitude];
+    
+    CLLocationCoordinate2D coordinat = [YDCoverLocation transformFromWGSToGCJ:cl.coordinate];
+     
+    NSLog(@"gps 经纬度 ：%f,%f",cl.coordinate.longitude,cl.coordinate.latitude);
+    NSLog(@"wgs84 经纬度 ：%f,%f",coordinat.longitude,coordinat.latitude);
+    
+    coordinat = CLLocationCoordinate2DMake(40.074833,116.42471); 
+    
+    CLLocation *location = [[CLLocation alloc] initWithLatitude:coordinat.latitude longitude:coordinat.longitude];
     [self.geocoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
         if (error || placemarks.count == 0) {
             //编码失败，找不到地址
@@ -93,14 +104,22 @@ static YDLoacationManager *manager;
             NSString *address = [NSString stringWithFormat:@"%@%@%@%@%@%@%@%@,addrass:%@",firstPlacemark.country,(firstPlacemark.administrativeArea ?: @""),firstPlacemark.locality,firstPlacemark.subLocality,firstPlacemark.name,(firstPlacemark.thoroughfare?:@""),(firstPlacemark.subThoroughfare?:@""),(firstPlacemark.areasOfInterest?:@""),firstPlacemark.addressDictionary];
             
             NSLog(@"%@",address);
+            NSString *formatAddress = firstPlacemark.addressDictionary.count<=0 ? @"" : [[firstPlacemark.addressDictionary objectForKey:@"FormattedAddressLines"] firstObject];
+            NSLog(@"ssssss %@",formatAddress);
             
-            self.address = [NSString stringWithFormat:@"%@%@%@%@%@%@",
-                            (firstPlacemark.administrativeArea ?: @""),
-                            firstPlacemark.locality,
-                            firstPlacemark.subLocality,
-                            firstPlacemark.name,
-                            (firstPlacemark.thoroughfare?:@""),
-                            (firstPlacemark.subThoroughfare?:@"")];
+//            self.address = [NSString stringWithFormat:@"%@%@%@%@%@%@%@%@",
+//                            (firstPlacemark.administrativeArea ?: @""),
+//                            firstPlacemark.subAdministrativeArea ?: @"",
+//                            firstPlacemark.locality,
+//                            firstPlacemark.subLocality,
+//                            firstPlacemark.name,
+//                            (firstPlacemark.thoroughfare?:@""),
+//                            (firstPlacemark.subThoroughfare?:@""),
+//                            firstPlacemark.areasOfInterest.count>0 ? firstPlacemark.areasOfInterest.firstObject : @""];
+            
+            self.address = [NSString stringWithFormat:@"%@%@",
+                            formatAddress,firstPlacemark.name];
+//            self.address = formatAddress;
         }
     }];
 }
@@ -112,7 +131,7 @@ static YDLoacationManager *manager;
 
 +(NSString *)address
 {
-    return manager.address;
+    return [YDLoacationManager shareInstance].address ?: @"";
 }
 
 @end
