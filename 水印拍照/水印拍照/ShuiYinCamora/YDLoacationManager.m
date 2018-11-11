@@ -79,7 +79,7 @@ static YDLoacationManager *manager;
     NSLog(@"gps 经纬度 ：%f,%f",cl.coordinate.longitude,cl.coordinate.latitude);
     NSLog(@"wgs84 经纬度 ：%f,%f",coordinat.longitude,coordinat.latitude);
     
-    coordinat = CLLocationCoordinate2DMake(40.074833,116.42471); 
+//    coordinat = CLLocationCoordinate2DMake(40.074833,116.42471);
     
     CLLocation *location = [[CLLocation alloc] initWithLatitude:coordinat.latitude longitude:coordinat.longitude];
     [self.geocoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
