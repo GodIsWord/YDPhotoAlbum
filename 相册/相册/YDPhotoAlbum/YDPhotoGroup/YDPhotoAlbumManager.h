@@ -11,6 +11,8 @@
 
 @interface YDPhotoAlbumManager : NSObject
 
+//检查是否能用相册
++(void)fetchRequestJaris:(void((^)(BOOL isCanUsPhotoLibrary, NSString *message)))block;
 
 /**
  获取相册组信息

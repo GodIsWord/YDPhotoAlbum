@@ -17,7 +17,7 @@
  选择图片之后结束的回传 数组里存放的是nsdata
  @param resultes 选中的图片data
  */
--(void)YDPhotoAlbumViewControllerSelectFinishResult:(NSArray *)resultes;
+-(void)photoAlbumSelectedViewController:(UIViewController*)controller result:(NSArray *)resultes;
 
 @end
 

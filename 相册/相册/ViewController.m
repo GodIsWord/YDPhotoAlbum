@@ -42,7 +42,7 @@
 }
 
 
--(void)YDPhotoAlbumViewControllerSelectFinishResult:(NSArray *)resultes
+-(void)photoAlbumSelectedViewController:(UIViewController *)controller result:(NSArray *)resultes
 {
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageWithData:resultes.firstObject]];
     imageView.frame = CGRectMake(10, 200, 200, 300);

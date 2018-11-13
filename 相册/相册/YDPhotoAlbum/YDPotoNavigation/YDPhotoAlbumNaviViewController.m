@@ -8,6 +8,8 @@
 
 #import "YDPhotoAlbumNaviViewController.h"
 
+#import "YDPhotoAlbumManager.h"
+
 
 @interface YDPhotoAlbumNaviViewController ()<UINavigationControllerDelegate,YDPhotoAlbumViewControllerDelegate>
 
@@ -28,6 +30,30 @@
 }
 -(void)initControllor
 {
+    [YDPhotoAlbumManager fetchRequestJaris:^(BOOL isCanUsPhotoLibrary, NSString *message) {
+        if (!isCanUsPhotoLibrary) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+                    if([[UIApplication sharedApplication] canOpenURL:url]) {
+                        
+                        [[UIApplication sharedApplication] openURL:url];
+                        
+                    }
+                }];
+                UIAlertAction *cancleAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                }];
+                UIAlertController *controller = [UIAlertController alertControllerWithTitle:nil message:message preferredStyle:UIAlertControllerStyleAlert];
+                [controller addAction:cancleAction];
+                [controller addAction:okAction];
+                [self presentViewController:controller animated:YES completion:nil];
+                
+            });
+        }
+    }];
+    
     YDPhotoGroupViewController *group = [[YDPhotoGroupViewController alloc] init];
     YDPhotoAlbumViewController *photo = [[YDPhotoAlbumViewController alloc] init];
     photo.finishDelegate = self;
@@ -70,10 +96,10 @@
     return UIStatusBarStyleLightContent;
 }
 
--(void)YDPhotoAlbumViewControllerSelectFinishResult:(NSArray *)resultes
+-(void)photoAlbumSelectedViewController:(UIViewController*)controller result:(NSArray *)resultes
 {
-    if ([self.finishDelegate respondsToSelector:@selector(YDPhotoAlbumViewControllerSelectFinishResult:)]) {
-        [self.finishDelegate YDPhotoAlbumViewControllerSelectFinishResult:resultes];
+    if ([self.finishDelegate respondsToSelector:@selector(photoAlbumSelectedViewController:result:)]) {
+        [self.finishDelegate photoAlbumSelectedViewController:self result:resultes];
     }
     [self dismissViewControllerAnimated:YES completion:nil];
 }

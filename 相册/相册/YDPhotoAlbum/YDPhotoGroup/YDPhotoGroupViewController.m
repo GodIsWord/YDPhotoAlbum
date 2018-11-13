@@ -11,6 +11,8 @@
 #import "YDPhotoAlbumManager.h"
 #import "YDPhotoAlbumViewController.h"
 
+#import "YDPhotoAlbumNaviViewController.h"
+
 @interface YDPhotoGroupViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property(nonatomic,copy) NSArray *dataSouce;
@@ -77,7 +79,7 @@ static NSString *const cellIdent = @"cellIdent";
 {
     YDPhotoGroupModel *model = self.dataSouce[indexPath.item];
     YDPhotoAlbumViewController *controllr = [[YDPhotoAlbumViewController alloc] init];
-    
+    controllr.finishDelegate = [(YDPhotoAlbumNaviViewController*)self.navigationController finishDelegate];
     controllr.dataSouce = model.items;
     [self.navigationController pushViewController:controllr animated:YES];
 }

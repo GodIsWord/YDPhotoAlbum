@@ -21,6 +21,8 @@
 
 @property(nonatomic,strong) UILabel *bottomLabel;
 
+@property (nonatomic, assign) CGFloat cellWidth;
+
 
 @end
 
@@ -32,6 +34,7 @@ static NSString *const headerId = @"headerId";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.cellWidth = (self.view.bounds.size.width)/4;
     self.arrSelected = [NSMutableArray array];
     [self initSubbView];
     [self initBottomView];
@@ -40,7 +43,7 @@ static NSString *const headerId = @"headerId";
     self.collectionLayout= [[UICollectionViewFlowLayout alloc] init];
 //    self.collectionLayout.headerReferenceSize = CGSizeMake(self.view.frame.size.width, 50);
 //    //该方法也可以设置itemSize
-//    self.collectionLayout.itemSize =CGSizeMake(110, 150);
+    self.collectionLayout.itemSize =CGSizeMake(self.cellWidth-10, self.cellWidth-10);
     UICollectionView *collection = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:self.collectionLayout];
     collection = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-50) collectionViewLayout:self.collectionLayout];
     collection.backgroundColor = [UIColor whiteColor];
@@ -74,7 +77,7 @@ static NSString *const headerId = @"headerId";
         return;
     }
     
-    if ([self.finishDelegate respondsToSelector:@selector(YDPhotoAlbumViewControllerSelectFinishResult:)]) {
+    if ([self.finishDelegate respondsToSelector:@selector(photoAlbumSelectedViewController:result:)]) {
         
         NSMutableArray *array = [NSMutableArray array];
         for (PHAsset *asset in self.arrSelected) {
@@ -82,7 +85,7 @@ static NSString *const headerId = @"headerId";
                 [array addObject:result];
             }];
         }
-        [self.finishDelegate YDPhotoAlbumViewControllerSelectFinishResult:array];
+        [self.finishDelegate photoAlbumSelectedViewController:self.navigationController result:array];
     }
 }
 -(void)initBottomView
@@ -96,7 +99,7 @@ static NSString *const headerId = @"headerId";
     self.bottomLabel = label;
     label.textAlignment = NSTextAlignmentCenter;
     label.font = [UIFont systemFontOfSize:18];
-    label.text = @"0/8";
+    label.text = @"0张";
 }
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -171,7 +174,7 @@ static NSString *const headerId = @"headerId";
 //设置每个item的尺寸
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(90, 90);
+    return CGSizeMake(self.cellWidth-10, self.cellWidth-10);
 }
 
 //设置每个item的UIEdgeInsets
@@ -183,14 +186,14 @@ static NSString *const headerId = @"headerId";
 //设置每个item水平间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 {
-    return 10;
+    return 0;
 }
 
 
 //设置每个item垂直间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
-    return 10;
+    return 5;
 }
 
 #pragma mark ---- UICollectionViewDelegate
