@@ -15,7 +15,11 @@
 		E662D29A218ECC8B00A6B9E9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E662D299218ECC8B00A6B9E9 /* main.m */; };
 		E662D2A4218ECC8C00A6B9E9 /* __Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = E662D2A3218ECC8C00A6B9E9 /* __Tests.m */; };
 		E662D2AF218ECC8C00A6B9E9 /* __UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E662D2AE218ECC8C00A6B9E9 /* __UITests.m */; };
-		E662D2BE218ECE2700A6B9E9 /* YDPhoneListManage.m in Sources */ = {isa = PBXBuildFile; fileRef = E662D2BD218ECE2700A6B9E9 /* YDPhoneListManage.m */; };
+		E662D306219B152900A6B9E9 /* LJContactManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E662D2FD219B152900A6B9E9 /* LJContactManager.m */; };
+		E662D307219B152900A6B9E9 /* LJPeoplePickerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E662D2FF219B152900A6B9E9 /* LJPeoplePickerDelegate.m */; };
+		E662D308219B152900A6B9E9 /* LJPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = E662D301219B152900A6B9E9 /* LJPerson.m */; };
+		E662D309219B152900A6B9E9 /* LJPickerDetailDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E662D303219B152900A6B9E9 /* LJPickerDetailDelegate.m */; };
+		E662D30A219B152900A6B9E9 /* NSString+LJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = E662D305219B152900A6B9E9 /* NSString+LJExtension.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,8 +56,16 @@
 		E662D2AA218ECC8C00A6B9E9 /* 隐私UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "隐私UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E662D2AE218ECC8C00A6B9E9 /* __UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = __UITests.m; sourceTree = "<group>"; };
 		E662D2B0218ECC8C00A6B9E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E662D2BC218ECE2700A6B9E9 /* YDPhoneListManage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YDPhoneListManage.h; sourceTree = "<group>"; };
-		E662D2BD218ECE2700A6B9E9 /* YDPhoneListManage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YDPhoneListManage.m; sourceTree = "<group>"; };
+		E662D2FC219B152900A6B9E9 /* LJContactManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJContactManager.h; sourceTree = "<group>"; };
+		E662D2FD219B152900A6B9E9 /* LJContactManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJContactManager.m; sourceTree = "<group>"; };
+		E662D2FE219B152900A6B9E9 /* LJPeoplePickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJPeoplePickerDelegate.h; sourceTree = "<group>"; };
+		E662D2FF219B152900A6B9E9 /* LJPeoplePickerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJPeoplePickerDelegate.m; sourceTree = "<group>"; };
+		E662D300219B152900A6B9E9 /* LJPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJPerson.h; sourceTree = "<group>"; };
+		E662D301219B152900A6B9E9 /* LJPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJPerson.m; sourceTree = "<group>"; };
+		E662D302219B152900A6B9E9 /* LJPickerDetailDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJPickerDetailDelegate.h; sourceTree = "<group>"; };
+		E662D303219B152900A6B9E9 /* LJPickerDetailDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJPickerDetailDelegate.m; sourceTree = "<group>"; };
+		E662D304219B152900A6B9E9 /* NSString+LJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+LJExtension.h"; sourceTree = "<group>"; };
+		E662D305219B152900A6B9E9 /* NSString+LJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+LJExtension.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,12 +116,11 @@
 		E662D289218ECC8A00A6B9E9 /* 隐私 */ = {
 			isa = PBXGroup;
 			children = (
+				E662D2FB219B152900A6B9E9 /* LJContactManager */,
 				E662D28A218ECC8A00A6B9E9 /* AppDelegate.h */,
 				E662D28B218ECC8A00A6B9E9 /* AppDelegate.m */,
 				E662D28D218ECC8A00A6B9E9 /* ViewController.h */,
 				E662D28E218ECC8A00A6B9E9 /* ViewController.m */,
-				E662D2BC218ECE2700A6B9E9 /* YDPhoneListManage.h */,
-				E662D2BD218ECE2700A6B9E9 /* YDPhoneListManage.m */,
 				E662D290218ECC8A00A6B9E9 /* Main.storyboard */,
 				E662D293218ECC8B00A6B9E9 /* Assets.xcassets */,
 				E662D295218ECC8B00A6B9E9 /* LaunchScreen.storyboard */,
@@ -135,6 +146,23 @@
 				E662D2B0218ECC8C00A6B9E9 /* Info.plist */,
 			);
 			path = "隐私UITests";
+			sourceTree = "<group>";
+		};
+		E662D2FB219B152900A6B9E9 /* LJContactManager */ = {
+			isa = PBXGroup;
+			children = (
+				E662D2FC219B152900A6B9E9 /* LJContactManager.h */,
+				E662D2FD219B152900A6B9E9 /* LJContactManager.m */,
+				E662D2FE219B152900A6B9E9 /* LJPeoplePickerDelegate.h */,
+				E662D2FF219B152900A6B9E9 /* LJPeoplePickerDelegate.m */,
+				E662D300219B152900A6B9E9 /* LJPerson.h */,
+				E662D301219B152900A6B9E9 /* LJPerson.m */,
+				E662D302219B152900A6B9E9 /* LJPickerDetailDelegate.h */,
+				E662D303219B152900A6B9E9 /* LJPickerDetailDelegate.m */,
+				E662D304219B152900A6B9E9 /* NSString+LJExtension.h */,
+				E662D305219B152900A6B9E9 /* NSString+LJExtension.m */,
+			);
+			path = LJContactManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -269,8 +297,12 @@
 			files = (
 				E662D28F218ECC8A00A6B9E9 /* ViewController.m in Sources */,
 				E662D29A218ECC8B00A6B9E9 /* main.m in Sources */,
-				E662D2BE218ECE2700A6B9E9 /* YDPhoneListManage.m in Sources */,
+				E662D308219B152900A6B9E9 /* LJPerson.m in Sources */,
+				E662D307219B152900A6B9E9 /* LJPeoplePickerDelegate.m in Sources */,
+				E662D309219B152900A6B9E9 /* LJPickerDetailDelegate.m in Sources */,
+				E662D306219B152900A6B9E9 /* LJContactManager.m in Sources */,
 				E662D28C218ECC8A00A6B9E9 /* AppDelegate.m in Sources */,
+				E662D30A219B152900A6B9E9 /* NSString+LJExtension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

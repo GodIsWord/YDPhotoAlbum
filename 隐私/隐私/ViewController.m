@@ -58,30 +58,34 @@
 //            [self presentViewController:nav animated:YES completion:nil];
             //让用户给权限,没有的话会被拒的各位
             CNAuthorizationStatus status = [CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts];
-            if (status == CNAuthorizationStatusNotDetermined) {
-                CNContactStore *store = [[CNContactStore alloc] init];
-                [store requestAccessForEntityType:CNEntityTypeContacts completionHandler:^(BOOL granted, NSError * _Nullable error) {
-                    if (error) {
-                        NSLog(@"没有授权, 需要去设置中心设置授权");
-                    }else
-                    {
-                        NSLog(@"用户已授权限");
-                        CNContactPickerViewController * picker = [CNContactPickerViewController new];
-                        picker.delegate = self;
-                        // 加载手机号
-                        picker.displayedPropertyKeys = @[CNContactPhoneNumbersKey];
-                        [self presentViewController: picker  animated:YES completion:nil];
-                    }
-                }];
-            }
+//            if (status == CNAuthorizationStatusNotDetermined) {
+//                CNContactStore *store = [[CNContactStore alloc] init];
+//                [store requestAccessForEntityType:CNEntityTypeContacts completionHandler:^(BOOL granted, NSError * _Nullable error) {
+//                    if (error) {
+//                        NSLog(@"没有授权, 需要去设置中心设置授权");
+//                    }else
+//                    {
+//                        NSLog(@"用户已授权限");
+//                        CNContactPickerViewController * picker = [CNContactPickerViewController new];
+//                        picker.delegate = self;
+//                        // 加载手机号
+////                        picker.displayedPropertyKeys = @[CNContactPhoneNumbersKey];
+////                        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:picker];
+//                        [self presentViewController:picker  animated:YES completion:nil];
+//                    }
+//                }];
+//            }
             
             if (status == CNAuthorizationStatusAuthorized) {
                 
                 //有权限时
                 CNContactPickerViewController * picker = [CNContactPickerViewController new];
                 picker.delegate = self;
-                picker.displayedPropertyKeys = @[CNContactPhoneNumbersKey];
-                [self presentViewController: picker  animated:YES completion:nil];
+//                picker.predicateForSelectionOfProperty = [NSPredicate predicateWithValue:false];
+                picker.predicateForSelectionOfContact = [NSPredicate predicateWithValue:false];
+//                picker.displayedPropertyKeys = @[CNContactPhoneNumbersKey];
+//                UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:picker];
+                [self presentViewController:picker  animated:YES completion:nil];
             }
             else{
                 NSLog(@"您未开启通讯录权限,请前往设置中心开启");
@@ -136,40 +140,49 @@
     }
 }
 
--(void)contactViewController:(CNContactViewController *)viewController didCompleteWithContact:(CNContact *)contact
+
+
+//-(void)contactViewController:(CNContactViewController *)viewController didCompleteWithContact:(CNContact *)contact
+//{
+//    NSLog(@"%@",contact);
+//}
+-(void)contactPicker:(CNContactPickerViewController *)picker didSelectContact:(CNContact *)contact
 {
     NSLog(@"%@",contact);
 }
-
+//-(void)contactPickerDidCancel:(CNContactPickerViewController *)picker
+//{
+////    [self presentViewController:picker animated:NO completion:nil];
+//}
 /**
  逻辑:  在该代理方法中会调出手机通讯录界面, 选中联系人的手机号, 会将联系人姓名以及手机号赋值给界面上的TEXT1和TEXT2两个UITextFiled上.
  功能: 调用手机通讯录界面, 获取联系人姓名以及电话号码.
  */
-- (void)contactPicker:(CNContactPickerViewController *)picker didSelectContactProperty:(CNContactProperty *)contactProperty {
-    
-    CNContact *contact = contactProperty.contact;
-    
-    NSLog(@"%@",contactProperty);
-    NSLog(@"givenName: %@, familyName: %@", contact.givenName, contact.familyName);
-    
-//    self.TEXT1.text = [NSString stringWithFormat:@"%@%@",contact.familyName,contact.givenName];
-    if (![contactProperty.value isKindOfClass:[CNPhoneNumber class]]) {
-        NSLog(@"提示用户选择11位的手机号");
-        return;
-    }
-    
-    CNPhoneNumber *phoneNumber = contactProperty.value;
-    NSString * Str = phoneNumber.stringValue;
-    NSCharacterSet *setToRemove = [[ NSCharacterSet characterSetWithCharactersInString:@"0123456789"]invertedSet];
-    NSString *phoneStr = [[Str componentsSeparatedByCharactersInSet:setToRemove]componentsJoinedByString:@""];
-    if (phoneStr.length != 11) {
-        
-        NSLog(@"提示用户选择11位的手机号");
-    }
-    
-    NSLog(@"-=-=%@",phoneStr);
-//    self.TEXT2.text = phoneStr;
-}
+//- (void)contactPicker:(CNContactPickerViewController *)picker didSelectContactProperty:(CNContactProperty *)contactProperty {
+//
+//    CNContact *contact = contactProperty.contact;
+//
+//    NSLog(@"%@",contactProperty);
+//    NSLog(@"givenName: %@, familyName: %@", contact.givenName, contact.familyName);
+//
+////    self.TEXT1.text = [NSString stringWithFormat:@"%@%@",contact.familyName,contact.givenName];
+//    if (![contactProperty.value isKindOfClass:[CNPhoneNumber class]]) {
+//        NSLog(@"提示用户选择11位的手机号");
+//        return;
+//    }
+//
+//    CNPhoneNumber *phoneNumber = contactProperty.value;
+//    NSString * Str = phoneNumber.stringValue;
+//    NSCharacterSet *setToRemove = [[ NSCharacterSet characterSetWithCharactersInString:@"0123456789"]invertedSet];
+//    NSString *phoneStr = [[Str componentsSeparatedByCharactersInSet:setToRemove]componentsJoinedByString:@""];
+//    if (phoneStr.length != 11) {
+//
+//        NSLog(@"提示用户选择11位的手机号");
+//    }
+//
+//    NSLog(@"-=-=%@",phoneStr);
+////    self.TEXT2.text = phoneStr;
+//}
 
 //mesage代理
 -(void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
