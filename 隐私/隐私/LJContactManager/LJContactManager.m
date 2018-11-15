@@ -343,7 +343,7 @@ void _blockExecute(void (^completion)(BOOL authorizationA), BOOL authorizationB)
             pc.delegate = self.pickerDetailDelegate;
         }
         
-        pc.displayedPropertyKeys = @[CNContactPhoneNumbersKey];
+//        pc.displayedPropertyKeys = @[CNContactPhoneNumbersKey];
         
         [self requestAddressBookAuthorization:^(BOOL authorization) {
             if (authorization)

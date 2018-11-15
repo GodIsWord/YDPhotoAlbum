@@ -82,7 +82,7 @@
                 CNContactPickerViewController * picker = [CNContactPickerViewController new];
                 picker.delegate = self;
 //                picker.predicateForSelectionOfProperty = [NSPredicate predicateWithValue:false];
-                picker.predicateForSelectionOfContact = [NSPredicate predicateWithValue:false];
+//                picker.predicateForSelectionOfContact = [NSPredicate predicateWithValue:false];
 //                picker.displayedPropertyKeys = @[CNContactPhoneNumbersKey];
 //                UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:picker];
                 [self presentViewController:picker  animated:YES completion:nil];
