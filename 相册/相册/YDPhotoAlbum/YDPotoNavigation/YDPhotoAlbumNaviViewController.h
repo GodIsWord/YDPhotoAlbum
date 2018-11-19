@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+#import "YDPhotoGroupViewController.h"
+#import "YDPhotoAlbumViewController.h"
+#import "YDPhotoAlbumManager.h"
+
+
+
 @interface YDPhotoAlbumNaviViewController : UINavigationController
+
+@property(nonatomic, weak) id<YDPhotoAlbumViewControllerDelegate> finishDelegate;
 
 @end

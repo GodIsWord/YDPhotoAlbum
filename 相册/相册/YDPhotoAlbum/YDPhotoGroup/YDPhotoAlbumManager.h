@@ -11,6 +11,8 @@
 
 @interface YDPhotoAlbumManager : NSObject
 
+//检查是否能用相册
++(void)fetchRequestJaris:(void((^)(BOOL isCanUsPhotoLibrary, NSString *message)))block;
 
 /**
  获取相册组信息
@@ -46,6 +48,16 @@
  @param complate 加载完成回调
  */
 +(void)fetchHighQualityImageAsset:(PHAsset *)asset viewSize:(CGSize)viewSize  progress:(void((^)(double progress)))handle complate:(void((^)(UIImage *result)))complate;
+
+
+/**
+ 获取单一image的data
+
+ @param asset 输入图片数据源
+ @param handle 设置加载回调
+ @param complate 加载完成回调
+ */
++(void)fetchHighQualityImageDataWithAsset:(PHAsset *)asset progress:(void((^)(double progress)))handle complate:(void((^)(NSData *result)))complate;
 
 /**
  获取所有图片资源 只是图片 不包括视频

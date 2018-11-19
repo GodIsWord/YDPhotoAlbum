@@ -17,6 +17,8 @@
 #import <Photos/Photos.h>
 #import "YDWeakProxy.h"
 
+#import "YDLoacationManager.h"
+
 @interface YDCamoraViewController ()
 
 //捕获设备，通常是前置摄像头，后置摄像头，麦克风（音频输入）
@@ -75,6 +77,8 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor clearColor];
     
+    [YDLoacationManager startWithLoacation];
+    
     if ( [self checkCameraPermission]) {
         
         [self customCamera];
@@ -111,7 +115,7 @@
 {
     if(!_cancleBtn){
         _cancleBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _cancleBtn.frame = CGRectMake(KScreenWidth/2-50-35, KScreenHeight - 150, 70, 70);
+        _cancleBtn.frame = CGRectMake(KScreenWidth/2-50-70, KScreenHeight - 150, 70, 70);
         [_cancleBtn setImage:[UIImage imageNamed:@"post_icon_voice_clear_normal"] forState:UIControlStateNormal];
         [_cancleBtn addTarget:self action:@selector(picBtnAction:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:_cancleBtn];
@@ -261,13 +265,13 @@
     [self.view addSubview:imageViewPicture];
     self.pictureImageView = imageViewPicture;
     
-    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(10, 44, 4, 60)];
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(10, 44, 4, 75)];
     lineView.backgroundColor = [UIColor whiteColor];
     [imageViewPicture addSubview:lineView];
     
     UILabel *timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(lineView.frame)+5, CGRectGetMinY(lineView.frame), KScreenWidth-100, 20)];
     timeLabel.textColor = [UIColor whiteColor];
-    timeLabel.text = @"13:34";
+    timeLabel.text = @"";
     timeLabel.font = [UIFont systemFontOfSize:18];
     [imageViewPicture addSubview:timeLabel];
     self.timeLabel = timeLabel;
@@ -275,10 +279,22 @@
     
     UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(lineView.frame)+5, CGRectGetMaxY(timeLabel.frame)+5, KScreenWidth-100, 20)];
     dateLabel.textColor = [UIColor whiteColor];
-    dateLabel.text = @"2018年10约27日 星期六";
+    dateLabel.text = @"";
     dateLabel.font = [UIFont systemFontOfSize:13];
     [imageViewPicture addSubview:dateLabel];
     self.dateLabel = dateLabel;
+    
+    UILabel *addressLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(lineView.frame)+5, CGRectGetMaxY(dateLabel.frame)+5, KScreenWidth-40, 20)];
+    addressLabel.textColor = [UIColor whiteColor];
+    addressLabel.text =  [YDLoacationManager address];
+    addressLabel.font = [UIFont systemFontOfSize:13];
+    [imageViewPicture addSubview:addressLabel];
+    addressLabel.numberOfLines = 0;
+    self.locationlabel = addressLabel;
+    
+//    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitYear| NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitWeekOfYear |  NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond | NSCalendarUnitWeekday | NSCalendarUnitWeekdayOrdinal fromDate:[NSDate date]];
+//    self.timeLabel.text = [NSString stringWithFormat:@"%02ld:%02ld",(long)components.hour,(long)components.minute];
+//    self.dateLabel.text = [NSString stringWithFormat:@"%ld年%02ld月%02ld日 %@",components.year,components.month,components.day,[self formatWeekDayWithType:components.weekday]];
     
 }
 
@@ -534,9 +550,11 @@
 - (void)getTimeAndWeakDay
 {
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitYear| NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitWeekOfYear |  NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond | NSCalendarUnitWeekday | NSCalendarUnitWeekdayOrdinal fromDate:[NSDate date]];
-    self.timeLabel.text = [NSString stringWithFormat:@"%ld:%ld",(long)components.hour,(long)components.minute];
-    self.dateLabel.text = [NSString stringWithFormat:@"%ld年%ld月%ld日 %@",components.year,components.month,components.day,[self formatWeekDayWithType:components.weekday]];
-    NSLog(@"timer:%d",components.second);
+    self.timeLabel.text = [NSString stringWithFormat:@"%02ld:%02ld",(long)components.hour,(long)components.minute];
+    self.dateLabel.text = [NSString stringWithFormat:@"%ld年%02ld月%02ld日 %@",components.year,components.month,components.day,[self formatWeekDayWithType:components.weekday]];
+    self.locationlabel.text = [YDLoacationManager address];
+    [self.locationlabel sizeToFit];
+    
 }
 
 -(NSString *)formatWeekDayWithType:(NSInteger)type

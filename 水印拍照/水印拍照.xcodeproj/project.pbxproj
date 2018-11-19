@@ -17,6 +17,9 @@
 		E662D05421840AAF00A6B9E9 /* ____UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E662D05321840AAF00A6B9E9 /* ____UITests.m */; };
 		E662D17A2184262B00A6B9E9 /* YDCamoraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E662D1792184262B00A6B9E9 /* YDCamoraViewController.m */; };
 		E662D17D2184297B00A6B9E9 /* CamoraAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E662D17C2184297B00A6B9E9 /* CamoraAssets.xcassets */; };
+		E662D22821874FB200A6B9E9 /* YDLoacationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E662D22721874FB200A6B9E9 /* YDLoacationManager.m */; };
+		E662D2F4219804EC00A6B9E9 /* YDCoverLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = E662D2F3219804EC00A6B9E9 /* YDCoverLocation.m */; };
+		E662D2F72198125200A6B9E9 /* JZLocationConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = E662D2F52198125200A6B9E9 /* JZLocationConverter.m */; };
 		E6F3C8B621859107008C5A90 /* YDWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = E6F3C8B521859106008C5A90 /* YDWeakProxy.m */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +60,12 @@
 		E662D1782184262B00A6B9E9 /* YDCamoraViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YDCamoraViewController.h; sourceTree = "<group>"; };
 		E662D1792184262B00A6B9E9 /* YDCamoraViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YDCamoraViewController.m; sourceTree = "<group>"; };
 		E662D17C2184297B00A6B9E9 /* CamoraAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CamoraAssets.xcassets; sourceTree = "<group>"; };
+		E662D22621874FB200A6B9E9 /* YDLoacationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YDLoacationManager.h; sourceTree = "<group>"; };
+		E662D22721874FB200A6B9E9 /* YDLoacationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YDLoacationManager.m; sourceTree = "<group>"; };
+		E662D2F2219804EC00A6B9E9 /* YDCoverLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YDCoverLocation.h; sourceTree = "<group>"; };
+		E662D2F3219804EC00A6B9E9 /* YDCoverLocation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YDCoverLocation.m; sourceTree = "<group>"; };
+		E662D2F52198125200A6B9E9 /* JZLocationConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZLocationConverter.m; sourceTree = "<group>"; };
+		E662D2F62198125200A6B9E9 /* JZLocationConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZLocationConverter.h; sourceTree = "<group>"; };
 		E6F3C8B421859106008C5A90 /* YDWeakProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDWeakProxy.h; sourceTree = "<group>"; };
 		E6F3C8B521859106008C5A90 /* YDWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDWeakProxy.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -149,6 +158,12 @@
 				E662D1792184262B00A6B9E9 /* YDCamoraViewController.m */,
 				E6F3C8B421859106008C5A90 /* YDWeakProxy.h */,
 				E6F3C8B521859106008C5A90 /* YDWeakProxy.m */,
+				E662D22621874FB200A6B9E9 /* YDLoacationManager.h */,
+				E662D22721874FB200A6B9E9 /* YDLoacationManager.m */,
+				E662D2F2219804EC00A6B9E9 /* YDCoverLocation.h */,
+				E662D2F3219804EC00A6B9E9 /* YDCoverLocation.m */,
+				E662D2F62198125200A6B9E9 /* JZLocationConverter.h */,
+				E662D2F52198125200A6B9E9 /* JZLocationConverter.m */,
 			);
 			path = ShuiYinCamora;
 			sourceTree = "<group>";
@@ -292,9 +307,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E662D2F4219804EC00A6B9E9 /* YDCoverLocation.m in Sources */,
 				E662D03421840AAC00A6B9E9 /* ViewController.m in Sources */,
+				E662D22821874FB200A6B9E9 /* YDLoacationManager.m in Sources */,
 				E662D03F21840AAE00A6B9E9 /* main.m in Sources */,
 				E662D17A2184262B00A6B9E9 /* YDCamoraViewController.m in Sources */,
+				E662D2F72198125200A6B9E9 /* JZLocationConverter.m in Sources */,
 				E6F3C8B621859107008C5A90 /* YDWeakProxy.m in Sources */,
 				E662D03121840AAC00A6B9E9 /* AppDelegate.m in Sources */,
 			);

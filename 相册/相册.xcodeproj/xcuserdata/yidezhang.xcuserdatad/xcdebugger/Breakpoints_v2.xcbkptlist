@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x76f8;&#x518c;/YDPhotoAlbum/YDPhotoGroup/YDPhotoAlbumManager.m"
-            timestampString = "557202688.6247981"
+            timestampString = "563026260.4901071"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "181"
-            endingLineNumber = "181"
+            startingLineNumber = "200"
+            endingLineNumber = "200"
             landmarkName = "+fetchRequestJaris:"
             landmarkType = "7">
          </BreakpointContent>
@@ -36,12 +36,76 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x76f8;&#x518c;/YDPhotoAlbum/YDPhotoGroup/YDPhotoAlbumManager.m"
-            timestampString = "557202688.625147"
+            timestampString = "563026260.493106"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "192"
-            endingLineNumber = "192"
+            startingLineNumber = "211"
+            endingLineNumber = "211"
             landmarkName = "+fetchRequestJaris:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x76f8;&#x518c;/YDPhotoAlbum/YDPhtoAlbum/YDPhotoAlbumViewController.m"
+            timestampString = "563026260.494278"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "-finishSelect:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x76f8;&#x518c;/YDPhotoAlbum/YDPotoNavigation/YDPhotoAlbumNaviViewController.m"
+            timestampString = "563026260.494946"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "-YDPhotoAlbumViewControllerSelectFinishResult:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x76f8;&#x518c;/YDPhotoAlbum/YDPotoNavigation/YDPhotoAlbumNaviViewController.m"
+            timestampString = "563026260.495325"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
+            landmarkName = "-btnClickBack"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x76f8;&#x518c;/ViewController.m"
+            timestampString = "563026260.495746"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "-YDPhotoAlbumViewControllerSelectFinishResult:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -12,7 +12,7 @@
 #import "YDPhotoGroupViewController.h"
 #import "YDPhotoAlbumNaviViewController.h"
 
-@interface ViewController ()
+@interface ViewController ()<YDPhotoAlbumViewControllerDelegate>
 
 @end
 
@@ -37,9 +37,17 @@
 {
     YDPhotoAlbumNaviViewController *controller = [[YDPhotoAlbumNaviViewController alloc] init];
 //    [self.navigationController pushViewController:controller animated:YES];
+    controller.finishDelegate = self;
     [self presentViewController:controller animated:YES completion:nil];
 }
 
+
+-(void)photoAlbumSelectedViewController:(UIViewController *)controller result:(NSArray *)resultes
+{
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageWithData:resultes.firstObject]];
+    imageView.frame = CGRectMake(10, 200, 200, 300);
+    [self.view addSubview:imageView];
+}
 
 
 

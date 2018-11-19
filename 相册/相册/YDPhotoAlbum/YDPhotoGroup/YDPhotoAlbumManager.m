@@ -18,7 +18,7 @@
 
 +(void)fetchPhotoGroup:(void (^)(NSArray<YDPhotoGroupModel *> *array))block
 {
-    [self fetchRequestJaris:^(BOOL isCanUsPhotoLibrary) {
+    [self fetchRequestJaris:^(BOOL isCanUsPhotoLibrary, NSString *message) {
         if (!isCanUsPhotoLibrary) {
             if (block) {
                 block(nil);
@@ -54,10 +54,11 @@
                         CGSize cellSize = CGSizeMake(400,400);
                         CGSize assetGridThumbnailSize = CGSizeMake(cellSize.width * scale, cellSize.height * scale);
                         
-                        [[PHCachingImageManager defaultManager] requestImageForAsset:asset targetSize:assetGridThumbnailSize contentMode:PHImageContentModeAspectFit options:nil resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+                        [array addObject:model];
+                        
+                        [self fetchHighQualityImageAsset:asset viewSize:assetGridThumbnailSize progress:nil complate:^(UIImage *result) {
                             model.image = result;
                         }];
-                        [array addObject:model];
                     }
                 }
             }
@@ -71,7 +72,7 @@
 
 +(void)fetchCameraRollItems:(void (^)(NSArray<PHAsset*> *))block
 {
-    [self fetchRequestJaris:^(BOOL isCanUsPhotoLibrary) {
+    [self fetchRequestJaris:^(BOOL isCanUsPhotoLibrary, NSString *message) {
         if (!isCanUsPhotoLibrary) {
             if (block) {
                 block(nil);
@@ -103,6 +104,10 @@
                 if (block) {
                     block(items);
                 }
+            }else{
+                if (block) {
+                    block(nil);
+                }
             }
         }];
     });
@@ -122,17 +127,36 @@
         });
     };
     
-    [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:viewSize contentMode:PHImageContentModeAspectFit options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+    [[PHCachingImageManager defaultManager] requestImageForAsset:asset targetSize:viewSize contentMode:PHImageContentModeAspectFit options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
         if (complate) {
             complate(result);
         }
         
     }];
 }
-
++(void)fetchHighQualityImageDataWithAsset:(PHAsset *)asset progress:(void ((^)(double)))handle complate:(void ((^)(NSData *)))complate
+{
+    PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+    options.synchronous = true;
+    options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
+    options.networkAccessAllowed = YES;
+    options.progressHandler = ^(double progress, NSError *error, BOOL *stop, NSDictionary *info) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (handle) {
+                handle(progress);
+            }
+        });
+    };
+    [[PHCachingImageManager defaultManager] requestImageDataForAsset:asset options:options resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
+//        BOOL downloadFinined = (![[info objectForKey:PHImageCancelledKey] boolValue] && ![info objectForKey:PHImageErrorKey]);
+        if (complate) {
+            complate(imageData);
+        }
+    }];
+}
 +(void)fetchAllPhotos:(void ((^)(NSArray<PHAsset *> *)))block
 {
-    [self fetchRequestJaris:^(BOOL isCanUsPhotoLibrary) {
+    [self fetchRequestJaris:^(BOOL isCanUsPhotoLibrary, NSString *message) {
         if (!isCanUsPhotoLibrary) {
             if (block) {
                 block(nil);
@@ -170,27 +194,29 @@
 }
 
 //检查是否能用相册
-+(void)fetchRequestJaris:(void((^)(BOOL isCanUsPhotoLibrary)))block
++(void)fetchRequestJaris:(void((^)(BOOL isCanUsPhotoLibrary, NSString *message)))block
 {
     if ([PHPhotoLibrary authorizationStatus] == PHAuthorizationStatusAuthorized) {
         if (block) {
-            block(YES);
+            block(YES,nil);
         }
     }else{
         [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
             BOOL isCan = NO;
+            NSString *des = @"";
             if (status == PHAuthorizationStatusDenied) {
-                NSLog(@"用户拒绝当前应用访问相册,我们需要提醒用户打开访问开关");
+                des = @"请在iPhone的”设置-隐私-照片“选项中，允许App访问您的相册";
             }else if (status == PHAuthorizationStatusRestricted){
-                NSLog(@"家长控制,不允许访问");
+                des = @"有家长控制,不允许访问，请打开家长控制允许访问您的相册";
             }else if (status == PHAuthorizationStatusNotDetermined){
                 NSLog(@"用户还没有做出选择");
                 isCan = YES;
             }else if (status == PHAuthorizationStatusAuthorized){
                 isCan = YES;
             }
+            NSLog(@"%@",des);
             if (block) {
-                block(isCan);
+                block(isCan,des);
             }
         }];
     }
